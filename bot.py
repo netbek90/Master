@@ -1,4 +1,4 @@
-from simple_bot import Bot  # базовый класс бота из файла simple_bot
+from simp_bot import Bot  # базовый класс бота из файла simple_bot
 import telebot
 import os
 from vk_api import VkApi

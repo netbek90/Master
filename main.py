@@ -1,5 +1,5 @@
-from simple_bot import Bot
-from longpoll_bot import LongPollBot
+from simp_bot import Bot
+from bot import LongPollBot
 
 if __name__ == '__main__':
     # long poll bot start with an automatic response to managed messages
