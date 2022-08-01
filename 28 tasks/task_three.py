@@ -34,8 +34,9 @@ def ConquestCampaign(N:int, M:int, L:int, battalion:list)-> int:
     while any(0 in x for x in matrix):
         round+=1
         for i in range(len(x_list)):
-           try:
-               neighbors(x_list[i],y_list[i])
-           except:
-               break
+            if any(0 in x for x in matrix):
+                try:
+                    neighbors(x_list[i],y_list[i])
+                except:
+                    break
     return round
