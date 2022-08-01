@@ -11,7 +11,6 @@ def ConquestCampaign(N:int, M:int, L:int, battalion:list)-> int:
     for y in battalion[::2]:
         y_list.append(y)
     def neighbors(x, y,matrix=matrix):
-        h = []
         if x + 1 < len(matrix[0]):
             matrix[y][x + 1]=1
             y_list.append(y)
@@ -30,6 +29,7 @@ def ConquestCampaign(N:int, M:int, L:int, battalion:list)-> int:
             x_list.append(x + 1)
         return matrix
 
+
     round=1
     while any(0 in x for x in matrix):
         round+=1
@@ -38,5 +38,5 @@ def ConquestCampaign(N:int, M:int, L:int, battalion:list)-> int:
                 try:
                     neighbors(x_list[i],y_list[i])
                 except:
-                    break
+                    continue
     return round
