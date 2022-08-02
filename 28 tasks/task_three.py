@@ -1,7 +1,5 @@
-import copy
-
-
 def ConquestCampaign(N: int, M: int, L: int, battalion: list) -> int:
+    import copy
     matrix = [[0] * M for i in range(N)]
     battalion = battalion[::-1]
     battalion_new = []
@@ -30,6 +28,9 @@ def ConquestCampaign(N: int, M: int, L: int, battalion: list) -> int:
                         except IndexError:
                             pass
 
+        # for row, new_row in zip(matrix, matrix_new):
+        #     print(row, new_row)
+        # print()
 
         matrix = copy.deepcopy(matrix_new)
         count += 1
