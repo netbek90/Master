@@ -1,42 +1,36 @@
-def ConquestCampaign(N:int, M:int, L:int, battalion:list)-> int:
+import copy
+
+
+def ConquestCampaign(N: int, M: int, L: int, battalion: list) -> int:
     matrix = [[0] * M for i in range(N)]
-    battalion=[i-1 for i in battalion]
-    for i in range(len(battalion)):
-        if i % 2 == 0 and i<len(battalion):
-            matrix[battalion[i]][battalion[i+1]]=1
-    x_list=[]
-    y_list=[]
-    for x in battalion[1::2]:
-        x_list.append(x)
-    for y in battalion[::2]:
-        y_list.append(y)
-    def neighbors(x, y,matrix=matrix):
-        if x + 1 < len(matrix[0]):
-            matrix[y][x + 1]=1
-            y_list.append(y)
-            x_list.append(x + 1)
-        if x - 1 >= 0:
-            matrix[y][x - 1]=1
-            y_list.append(y)
-            x_list.append(x - 1)
-        if y + 1 < len(matrix):
-            matrix[y + 1][x]=1
-            y_list.append(y+1)
-            x_list.append(x)
-        if y - 1 >= 0:
-            matrix[y - 1][x]=1
-            y_list.append(y - 1)
-            x_list.append(x + 1)
-        return matrix
+    battalion = battalion[::-1]
+    battalion_new = []
+
+    for i in range(L):
+        x = battalion.pop() - 1
+        y = battalion.pop() - 1
+
+        matrix[x][y] = 1
+
+        battalion_new.append((x, y))
+
+    matrix_new = copy.deepcopy(matrix)
+    count = 1
+
+    while not all([all([s == 1 for s in i]) for i in matrix]):
+
+        for row_num in range(len(matrix)):
+            for square_num in range(len(matrix[row_num])):
+
+                if matrix[row_num][square_num] == 1:
+                    for con in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
+                        try:
+                            if (row_num + con[0]) >= 0 and (square_num + con[1]) >= 0:
+                                matrix_new[row_num + con[0]][square_num + con[1]] = 1
+                        except IndexError:
+                            pass
 
 
-    round=1
-    while any(0 in x for x in matrix):
-        round+=1
-        for i in range(len(x_list)):
-            if any(0 in x for x in matrix):
-                try:
-                    neighbors(x_list[i],y_list[i])
-                except:
-                    continue
-    return round
+        matrix = copy.deepcopy(matrix_new)
+        count += 1
+    return count
