@@ -12,10 +12,6 @@ def PatternUnlock(N: int, hits: list) -> str:
 
     if '0' in str(totalDistance):
         k = str(totalDistance).replace('0', '')
-        if k[-1]==".":
-            k = k.replace('.', '')
-            return k
-        else:
-            return k
+        return k.replace('.', '')
     else:
-        return str(totalDistance)
+        return str(totalDistance).replace('.',"")
