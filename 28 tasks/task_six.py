@@ -14,4 +14,4 @@ def PatternUnlock(N: int, hits: list) -> str:
         k = str(totalDistance).replace('0', '')
         return k
     else:
-        return totalDistance
+        return str(totalDistance)
