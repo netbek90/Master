@@ -13,3 +13,5 @@ def PatternUnlock(N: int, hits: list) -> str:
     if '0' in str(totalDistance):
         k = str(totalDistance).replace('0', '')
         return k
+    else:
+        return totalDistance
